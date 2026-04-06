@@ -1,0 +1,4 @@
+@EndUserText.label: 'debt cat'
+define service Zsd_debtcat {
+  expose ZCV_DEBTCAT;
+}

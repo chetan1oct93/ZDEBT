@@ -1,0 +1,10 @@
+@Metadata.layer: #CUSTOMER
+@UI.presentationVariant: [ { sortOrder: [ { by: 'DEBTOR_CAT', direction: #ASC } ] } ]
+
+annotate entity ZIV_DEBTCAT_VH
+    with 
+{
+    @UI.hidden: false
+    DEBTOR_CAT;
+    
+}

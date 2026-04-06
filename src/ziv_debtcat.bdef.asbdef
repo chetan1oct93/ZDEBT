@@ -1,0 +1,41 @@
+managed implementation in class zbp_iv_debtcat unique;
+strict ( 2 );
+
+define behavior for ZIV_DEBTCAT
+persistent table ztcd_debtcatg
+lock master
+etag master LocalLastChangedAt
+authorization master ( global )
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly : update ) CoMgmtId, ProcYrmnth;
+  field ( readonly ) BankrFlag, BpUpdStus, Chgdate, Chgtime, Chguser, Crtdate, Crttime, Crtuser, DRating, DelayRating, MthsDelay, ShopOpen1Flag, LocalLastChangedAt;
+  static action downloadTemplateFile;
+  static action debtorCategoryUpload;
+  static action companyMgmntMasterUpdate;
+
+  mapping for ztcd_debtcatg
+    {
+      BankrFlag          = bankr_flag;
+      BpUpdStus          = bp_upd_stus;
+      Chgdate            = chgdate;
+      Chgprog            = chgprog;
+      Chgtime            = chgtime;
+      Chguser            = chguser;
+      CoMgmtId           = co_mgmt_id;
+      Commnt             = commnt;
+      Crtdate            = crtdate;
+      Crtprog            = crtprog;
+      Crttime            = crttime;
+      Crtuser            = crtuser;
+      DRating            = d_rating;
+      DebtorCat          = debtor_cat;
+      DelayRating        = delay_rating;
+      MthsDelay          = mths_delay;
+      ProcYrmnth         = proc_yrmnth;
+      ShopOpen1Flag      = shop_open1_flag;
+      LocalLastChangedAt = last_changed_at;
+    }
+}

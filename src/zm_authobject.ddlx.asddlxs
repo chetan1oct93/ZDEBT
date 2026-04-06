@@ -1,0 +1,110 @@
+@Metadata.layer: #CUSTOMER
+
+@UI.headerInfo: { typeName: 'Debt Cat', typeNamePlural: 'Debt Cats' }
+
+annotate entity ZCV_DEBTCAT with
+
+{
+  @EndUserText.label: 'Company Management ID'
+  @UI.dataPoint: { qualifier: 'CoMgmtData', title: 'Company Management ID: ' }
+  @UI.facet: [ { position: 10, purpose: #HEADER, type: #DATAPOINT_REFERENCE, targetQualifier: 'CoMgmtData' },
+               { position: 20, purpose: #HEADER, type: #DATAPOINT_REFERENCE, targetQualifier: 'ProcYrmnthData' },
+               { label: 'Details', id: 'GeneralInfo', type: #COLLECTION, position: 10 },
+               { parentId: 'GeneralInfo',
+                 id: 'Col1',
+                 type: #FIELDGROUP_REFERENCE,
+                 position: 50,
+                 targetQualifier: 'Col1Group' },
+               { parentId: 'GeneralInfo',
+                 id: 'Col2',
+                 type: #FIELDGROUP_REFERENCE,
+                 position: 60,
+                 targetQualifier: 'Col2Group' } ]
+  @UI.lineItem: [ { position: 10 },
+                  { type: #FOR_ACTION, dataAction: 'PUSHDOWN:downloadTemplateFile', label: 'Download Template File' },
+                  { type: #FOR_ACTION, dataAction: 'debtorCategoryUpload', label: 'Debtor Category Bulk Upload' },
+                  { type: #FOR_ACTION, dataAction: 'companyMgmntMasterUpdate', label: 'Company Management Master Update' } ]
+  @UI.selectionField: [ { position: 10 } ]
+  CoMgmtId;
+
+  @EndUserText.label: 'Processing Year Month'
+  @UI.dataPoint: { qualifier: 'ProcYrmnthData', title: 'Processing Year Month: ' }
+  @UI.lineItem: [ { position: 20 } ]
+  @UI.selectionField: [ { position: 30 } ]
+  ProcYrmnth;
+
+  @Consumption.valueHelpDefinition: [ { entity: { name: 'ZIV_DEBTCAT_VH', element: 'DEBTOR_CAT' },
+                                        useForValidation: true } ]
+  @EndUserText.label: 'Debtor Category'
+  @UI.fieldGroup: [ { qualifier: 'Col1Group', position: 10 } ]
+  @UI.lineItem: [ { position: 30 } ]
+  @UI.selectionField: [ { position: 20 } ]
+  DebtorCat;
+
+  @EndUserText.label: 'D Rating'
+  @UI.fieldGroup: [ { qualifier: 'Col1Group', position: 20 } ]
+  @UI.lineItem: [ { position: 40 } ]
+  DRating;
+
+  @EndUserText.label: 'Delayed Rating'
+  @UI.fieldGroup: [ { qualifier: 'Col1Group', position: 30 } ]
+  @UI.lineItem: [ { position: 50 } ]
+  DelayRating;
+
+  @EndUserText.label: ' Consecutive Months of delay'
+  @UI.fieldGroup: [ { qualifier: 'Col1Group', position: 40 } ]
+  @UI.lineItem: [ { position: 60 } ]
+  MthsDelay;
+
+  @EndUserText.label: 'Bankrupt Flag'
+  @UI.fieldGroup: [ { qualifier: 'Col1Group', position: 50 } ]
+  @UI.lineItem: [ { position: 70 } ]
+  BankrFlag;
+
+  @EndUserText.label: 'Shop Open 1 Year Flag'
+  @UI.fieldGroup: [ { qualifier: 'Col1Group', position: 60 } ]
+  @UI.lineItem: [ { position: 80 } ]
+  ShopOpen1Flag;
+
+  @EndUserText.label: 'Comment'
+  @UI.fieldGroup: [ { qualifier: 'Col2Group', position: 10 } ]
+  @UI.lineItem: [ { position: 90 } ]
+  @UI.multiLineText: true
+  @UI.selectionField: [ { position: 90 } ]
+  Commnt;
+
+  @EndUserText.label: 'Creation date'
+  @UI.fieldGroup: [ { qualifier: 'Col2Group', position: 20 } ]
+  @UI.lineItem: [ { position: 110 } ]
+  Crtdate;
+
+  @EndUserText.label: 'Creation time'
+  @UI.fieldGroup: [ { qualifier: 'Col2Group', position: 30 } ]
+  @UI.lineItem: [ { position: 120 } ]
+  Crttime;
+
+  @EndUserText.label: 'Creation user'
+  @UI.fieldGroup: [ { qualifier: 'Col2Group', position: 40 } ]
+  @UI.lineItem: [ { position: 130 } ]
+  Crtuser;
+
+  @EndUserText.label: 'Change date'
+  @UI.fieldGroup: [ { qualifier: 'Col2Group', position: 50 } ]
+  @UI.lineItem: [ { position: 140 } ]
+  Chgdate;
+
+  @EndUserText.label: 'Change time'
+  @UI.fieldGroup: [ { qualifier: 'Col2Group', position: 60 } ]
+  @UI.lineItem: [ { position: 150 } ]
+  Chgtime;
+
+  @EndUserText.label: 'Change user'
+  @UI.fieldGroup: [ { qualifier: 'Col2Group', position: 70 } ]
+  @UI.lineItem: [ { position: 160 } ]
+  @UI.selectionField: [ { position: 160 } ]
+  Chguser;
+
+  @EndUserText.label: 'Last Change Timestamp'
+  @UI.fieldGroup: [ { qualifier: 'Col2Group', position: 80 } ]
+  LocalLastChangedAt;
+}
